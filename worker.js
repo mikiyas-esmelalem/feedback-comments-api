@@ -170,8 +170,13 @@ export default {
           );
 
           if (!telegramResponse.ok) {
-            console.error("Telegram notification failed");
-          }
+  const telegramError = await telegramResponse.text();
+  console.error(
+    "Telegram notification failed:",
+    telegramResponse.status,
+    telegramError
+  );
+}
         } catch (error) {
           console.error("Telegram notification request failed");
         }
