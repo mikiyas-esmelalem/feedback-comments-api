@@ -1,0 +1,9 @@
+
+name = "feedback-comments-api"
+main = "worker.js"
+compatibility_date = "2026-10-26"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "feedback-comments-db"
+database_id = "372db070-57da-4646-b513-583de5bd64b8"
