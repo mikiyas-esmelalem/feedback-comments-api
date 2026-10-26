@@ -144,7 +144,37 @@ export default {
           rating,
           message,
           contact || null
-        ).run();
+                ).run();
+
+        // Send a Telegram notification after saving feedback
+        try {
+          const telegramResponse = await fetch(
+            `https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({
+                chat_id: env.TELEGRAM_CHAT_ID,
+                text:
+                  "📩 NEW FEEDBACK\n\n" +
+                  "Ticket: " + ticketId + "\n" +
+                  "Category: " + category + "\n" +
+                  "Rating: " + (rating ?? "Not provided") + "\n" +
+                  "Message: " + message + "\n" +
+                  "Contact: " + (contact || "Not provided"),
+                protect_content: true
+              })
+            }
+          );
+
+          if (!telegramResponse.ok) {
+            console.error("Telegram notification failed");
+          }
+        } catch (error) {
+          console.error("Telegram notification request failed");
+        }
 
         return json({
           ok: true,
