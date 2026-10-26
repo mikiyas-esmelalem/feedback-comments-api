@@ -149,14 +149,14 @@ export default {
         // Send a Telegram notification after saving feedback
         try {
           const telegramResponse = await fetch(
-            `https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`,
+            `https://api.telegram.org/bot${env.8967372662:AAHxMYgFCmM_1nUlTJmygW9KE52soxBGvZU`,
             {
               method: "POST",
               headers: {
                 "Content-Type": "application/json"
               },
               body: JSON.stringify({
-                chat_id: env.TELEGRAM_CHAT_ID,
+                chat_id: env.942827410,
                 text:
                   "📩 NEW FEEDBACK\n\n" +
                   "Ticket: " + ticketId + "\n" +
